@@ -2,6 +2,7 @@ import os
 import random
 import sys
 import time
+
 import pygame as pg
 
 WIDTH, HEIGHT = 1100, 650  # ウィンドウの幅と高さ
