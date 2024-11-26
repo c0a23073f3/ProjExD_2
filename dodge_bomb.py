@@ -13,6 +13,18 @@ DELTA = {
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
+def check_bound(obj_rct:pg.Rect)->tuple[bool,bool]:
+    """
+    引数で与えられたRectが画面の中か外か判定する。
+    引数:こうかとんRectか爆弾Rect
+    戻り値:こうかとんRect　OR　爆弾Rect
+    """
+    yoko, = True, True
+    if rct.left < 0 or WIDTH < rct.right:
+        yoko = False
+    if rct.top < 0 or rct.bottom:
+        tate = False
+    return yoko, tate
 
 def main():
     pg.display.set_caption("逃げろ！こうかとん")
