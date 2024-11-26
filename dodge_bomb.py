@@ -7,10 +7,10 @@ import pygame as pg
 
 WIDTH, HEIGHT = 1100, 650  # ウィンドウの幅と高さ
 DELTA = {
-    pg.K_UP: (0, -5),
-    pg.K_DOWN: (0, +5),
-    pg.K_LEFT: (-5, 0),
-    pg.K_RIGHT: (+5, 0),
+    pg.K_UP:  (0, -5),
+    pg.K_DOWN:  (0, +5),
+    pg.K_LEFT:  (-5, 0),
+    pg.K_RIGHT:  (+5, 0),
 }  
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))  # カレントディレクトリの移動
