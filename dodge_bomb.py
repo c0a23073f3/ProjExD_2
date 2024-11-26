@@ -1,11 +1,11 @@
 import os
 import random
 import sys
+import time  # timeモジュールをインポート
 import pygame as pg
 
 WIDTH, HEIGHT = 1100, 650
 DELTA = {
-
     pg.K_UP: (0, -5),
     pg.K_DOWN: (0, 5),
     pg.K_LEFT: (-5, 0),
@@ -16,7 +16,7 @@ os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 """
 引数で与えられたRectが画面内に収まっているかどうかを判定する関数
-引数：こうかとんRect or 爆弾Rect
+引数:こうかとんRect or 爆弾Rect
 戻り値：横方向と縦方向の判定結果タプル（画面内: True, 画面外: False）
 """
 
@@ -32,8 +32,8 @@ def check_bound(rct):
 def game_over(screen, kk_img):
     """
     ゲームオーバー時の画面表示
-    引数:pg.surfaceと、kk_img（こうかとん）
-    戻り値:None
+    引数: pg.Surfaceと、kk_img（こうかとん）
+    戻り値: None
     """
     font = pg.font.Font(None, 80)
     text = font.render("Game Over", True, (255, 255, 255))
@@ -49,14 +49,17 @@ def game_over(screen, kk_img):
     kk_img = pg.transform.rotozoom(pg.image.load("fig/8.png"), 0, 0.9)
     kk_rct = kk_img.get_rect(center=(WIDTH // 2 - 200, HEIGHT // 2))
     screen.blit(kk_img, kk_rct)
-    #泣いているこうかとん2
+
+    # 泣いているこうかとん2
     kk_img = pg.transform.rotozoom(pg.image.load("fig/8.png"), 0, 0.9)
     kk_rct = kk_img.get_rect(center=(WIDTH // 2 + 200, HEIGHT // 2))
     screen.blit(kk_img, kk_rct)
 
     screen.blit(text, text_rect)
     pg.display.update()
-    pg.time.wait(5000)
+
+    # 5秒間停止させる☆
+    time.sleep(5)
 
 
 def main():
@@ -113,7 +116,7 @@ def main():
         if not tate:
             vy *= -1
 
-        # 時間経過で爆弾の拡大・加速
+        # 時間経過で爆弾の拡大と加速を促します
         bb_img = bb_imgs[min(tmr // 500, 9)]
         avx = vx * bb_accs[min(tmr // 500, 9)]
         avy = vy * bb_accs[min(tmr // 500, 9)]
